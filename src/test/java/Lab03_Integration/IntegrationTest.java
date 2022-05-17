@@ -147,4 +147,22 @@ public class IntegrationTest {
         int result = service.saveNota(ID_STUDENT, ID_ASG, VAL_NOTA, PREDATA, FEEDBACK);
         assertEquals(FAILURE_NONEXISTENT, result);
     }
+
+    @Test
+    public void integration_testAddGrade_InvalidStudentId() {
+        service.saveStudent(ID_STUDENT, TEST_STUDENT, GRUPA);
+        service.saveTema(ID_ASG, TEST_ASSIGNEMNT, STARTLINE, DEADLINE);
+
+        int result = service.saveNota("", ID_ASG, VAL_NOTA, PREDATA, FEEDBACK);
+        assertEquals(FAILURE_NONEXISTENT, result);
+    }
+
+    @Test
+    public void integration_testAddGrade_InvalidAssignmentId() {
+        service.saveStudent(ID_STUDENT, TEST_STUDENT, GRUPA);
+        service.saveTema(ID_ASG, TEST_ASSIGNEMNT, STARTLINE, DEADLINE);
+
+        int result = service.saveNota(ID_STUDENT, "", VAL_NOTA, PREDATA, FEEDBACK);
+        assertEquals(FAILURE_NONEXISTENT, result);
+    }
 }
